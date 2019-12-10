@@ -1,21 +1,21 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 
+// component
 const App = () => {
+  // component state
+  const [name, setName] = useState("Mario");
+  const [age, setAge] = useState(44);
+  // component styles
   const { container, header, boldText, body } = styles;
 
   return (
     <View style={container}>
       <View style={header}>
-        <Text style={boldText}>Ciao!</Text>
+        <Text style={boldText}>My name is {name}</Text>
       </View>
       <View style={body}>
-        <Text>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Necessitatibus blanditiis libero, consequatur beatae neque, ex a nihil
-          atque cum explicabo veniam rem, aliquid quasi. Accusantium iste
-          excepturi in dolorum eligendi!
-        </Text>
+        <Button title="ok" />
       </View>
     </View>
   );
