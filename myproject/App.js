@@ -1,22 +1,54 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView
+} from "react-native";
 
 // component
 const App = () => {
   // component state
   const [name, setName] = useState("Mario");
-  const [age, setAge] = useState(44);
-  // component styles
-  const { container, header, boldText, body } = styles;
+  const [age, setAge] = useState("44");
+  const [people, setPeople] = useState([
+    { id: 1, name: "Mario" }
+    //{ id: 2, name: "Mariarosa" },
+    //{ id: 3, name: "Maria" }
+  ]);
 
   return (
-    <View style={container}>
-      <View style={header}>
-        <Text style={boldText}>My name is {name}</Text>
-      </View>
-      <View style={body}>
-        <Button title="ok" />
-      </View>
+    <View style={styles.container}>
+      <Button title="OK" onPress={() => alert("ciao")} />
+
+      <Text>Enter name:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Mario Rossi"
+        onChangeText={name => setName(name)}
+      />
+
+      <Text>Enter age:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="99"
+        keyboardType="numeric"
+        onChangeText={age => setAge(age)}
+      />
+
+      <Text>
+        My name is {name} and I'm {age}.
+      </Text>
+
+      <ScrollView>
+        {people.map(item => (
+          <View style={styles.item} key={item.id}>
+            <Text>{item.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -24,20 +56,22 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "#fff"
+    //alignItems: "center",
+    //justifyContent: "center"
   },
-  header: {
+  input: {
+    borderWidth: 1,
+    borderColor: "#777",
+    padding: 8,
+    margin: 10,
+    width: 200
+  },
+  item: {
+    marginTop: 24,
     backgroundColor: "pink",
-    padding: 20
-  },
-  boldText: {
-    fontWeight: "bold"
-  },
-  body: {
-    backgroundColor: "yellow",
-    padding: 20
+    padding: 30,
+    fontSize: 24
   }
 });
 
